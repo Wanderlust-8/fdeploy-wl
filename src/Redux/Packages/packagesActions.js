@@ -13,12 +13,12 @@ export const SET_SEARCH_FILTER = "SET_SEARCH_FILTER";
 export const CLEAR_SEARCH_VIEW = "CLEAR_SEARCH_VIEW";
 export const RESET = "RESET"
 
-
+const URL = "https://deploy-back-kohl.vercel.app"
 
 export const fetchPackages = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:3002/packages");
+      const response = await axios.get(`${URL}/packages`);
       const data = response.data;
       return dispatch({
         type: FETCH_PACKAGES,
@@ -34,7 +34,7 @@ export const addPackages = (newPackage) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:3002/packages",
+        `${URL}/packages`,
         newPackage
       );
       const data = response.data;
@@ -51,7 +51,7 @@ export const addPackages = (newPackage) => {
 export const getPackageById = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`http://localhost:3002/packages/${id}`);
+      const response = await axios.get(`${URL}/packages/${id}`);
       const data = response.data;
       return dispatch({
         type: GET_PACKAGE_BY_ID,

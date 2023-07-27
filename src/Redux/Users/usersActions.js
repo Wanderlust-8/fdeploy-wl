@@ -12,11 +12,13 @@ export const ADDUSER_SHOPPING = "USER_SHOPPING";
 export const CHECKUSER_SHOPPING = "CHECKUSER_SHOPPING";
 export const NEW_CART = "NEW_CART";
 
+const URL = "https://deploy-back-kohl.vercel.app"
+
 export const userShopping = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `http://localhost:3002/shoppingCar/user/${id}`
+        `${URL}/shoppingCar/user/${id}`
       );
       const data = response.data;
       return dispatch({
@@ -32,7 +34,7 @@ export const userShopping = (id) => {
 export const fetchUsers = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:3002/users");
+      const response = await axios.get(`${URL}/users`);
       const data = response.data;
       return dispatch({
         type: FETCH_USERS,
@@ -48,7 +50,7 @@ export const addUser = (newUser) => {
   return async (dispatch) => {
     try {
       const userResponse = await axios.post(
-        "http://localhost:3002/users",
+        `${URL}/users`,
         newUser
       );
       const user = userResponse.data;
@@ -57,7 +59,7 @@ export const addUser = (newUser) => {
         payload: user,
       });
       const cartResponse = await axios.post(
-        `http://localhost:3002/shoppingCar/user/${user.uid}`
+        `${URL}/shoppingCar/user/${user.uid}`
       );
       const cart = cartResponse.data;
       console.log("CARTTTT:", cart);
@@ -76,7 +78,7 @@ export const addUser = (newUser) => {
 export const getUserById = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`http://localhost:3002/users/${id}`);
+      const response = await axios.get(`${URL}/users/${id}`);
       const data = response.data;
       return dispatch({
         type: GET_USER_BY_ID,
@@ -92,7 +94,7 @@ export const searchUsers = (word) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `http://localhost:3002/users?title=${word}`
+        `${URL}/users?title=${word}`
       );
       const data = response.data;
       return dispatch({
@@ -108,7 +110,7 @@ export const searchUsers = (word) => {
 export const deleteUser = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete(`http://localhost:3002/users/${id}`);
+      const response = await axios.delete(`${URL}/users/${id}`);
       const data = response.data;
       return dispatch({
         type: DELETE_USER,
@@ -124,7 +126,7 @@ export const editUser = (id, user) => {
   return async (dispatch) => {
     try {
       const response = await axios.put(
-        `http://localhost:3002/users/${id}`,
+        `${URL}/users/${id}`,
         user
       );
       const data = response.data;
@@ -141,7 +143,7 @@ export const editUser = (id, user) => {
 export const loginUser = (email, password) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:3002/users");
+      const response = await axios.get(`${URL}/users`);
       const data = response.data;
 
       const user = data.find(

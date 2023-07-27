@@ -7,10 +7,11 @@ export const SEARCH_CITIES = "SEARCH_CITIES";
 export const GET_CITY_ORIGIN = "GET_CITY_ORIGIN"
 export const ADD_ORIGIN_CITY = "ADD_ORIGIN_CITY"
 
+const URL = "https://deploy-back-kohl.vercel.app"
 export const fetchCities = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:3002/cities");
+      const response = await axios.get(`${URL}/cities`);
       const data = response.data;
       return dispatch({
         type: FETCH_CITIES,
@@ -26,7 +27,7 @@ export const addCities = (newCity) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:3002/cities",
+        `${URL}/cities`,
         newCity
       );
       const data = response.data;
@@ -43,7 +44,7 @@ export const addCities = (newCity) => {
 export const getCityById = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`http://localhost:3002/cities/${id}`);
+      const response = await axios.get(`${URL}/cities/${id}`);
       const data = response.data;
       return dispatch({
         type: GET_CITY_BY_ID,
@@ -59,7 +60,7 @@ export const searchCities = (word) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `http://localhost:3002/cities?title=${word}`
+        `${URL}/cities?title=${word}`
       );
       const data = response.data;
       return dispatch({
@@ -75,7 +76,7 @@ export const searchCities = (word) => {
 export const getCityOrigin = () =>{
   return async (dispatch)=>{
     try{
-      const response = await axios.get(`http://localhost:3002/cities-origins`);
+      const response = await axios.get(`${URL}/cities-origins`);
       const data = response.data;
       return dispatch({
         type: GET_CITY_ORIGIN,
@@ -90,7 +91,7 @@ export const addOriginCity = (newCity) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:3002/cities-origins",
+        `${URL}/cities-origins`,
         newCity
       );
       const data = response.data;
